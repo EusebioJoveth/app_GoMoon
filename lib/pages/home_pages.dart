@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         height: _deviceHeigth,
         width: _deviceWidth,
         padding: EdgeInsets.symmetric(horizontal: _deviceWidth * 0.05),
-        child: _pageTitle(),
+        child: _destinationDropDownWidget(),
       ),
     ));
   }
@@ -34,6 +34,26 @@ class HomePage extends StatelessWidget {
         fit: BoxFit.fill,
         image: AssetImage("assets/images/astro.jpg"),
       )),
+    );
+  }
+
+  Widget _destinationDropDownWidget() {
+    List<DropdownMenuItem<String>> _items = [
+      'Eusebio web developer',
+      'Kambulo WebDesign',
+    ].map(
+      (e) {
+        return DropdownMenuItem(
+          child: Text(e),
+          value: e,
+        );
+      },
+    ).toList();
+    return Container(
+      child: DropdownButton(
+        onChanged: (_) {},
+        items: _items,
+      ),
     );
   }
 }
