@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_moon/widgets/custom_dropdown_button.dart';
 
 class HomePage extends StatelessWidget {
   late double _deviceHeigth, _deviceWidth;
@@ -14,7 +15,16 @@ class HomePage extends StatelessWidget {
         height: _deviceHeigth,
         width: _deviceWidth,
         padding: EdgeInsets.symmetric(horizontal: _deviceWidth * 0.05),
-        child: _destinationDropDownWidget(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _pageTitle(),
+            _destinationDropDownWidget(),
+            _travellersInformationWidget(),
+          ],
+        ),
       ),
     ));
   }
@@ -38,22 +48,15 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _destinationDropDownWidget() {
-    List<DropdownMenuItem<String>> _items = [
-      'Eusebio web developer',
-      'Kambulo WebDesign',
-    ].map(
-      (e) {
-        return DropdownMenuItem(
-          child: Text(e),
-          value: e,
-        );
-      },
-    ).toList();
-    return Container(
-      child: DropdownButton(
-        onChanged: (_) {},
-        items: _items,
-      ),
+    return CustomDropDownButtonClass(
+        values: const ['Eusebio Developer', 'Kambulo WebDesign'],
+        width: _deviceWidth);
+  }
+
+  Widget _travellersInformationWidget() {
+    return CustomDropDownButtonClass(
+      values: const ['1', '2', '3', '4'],
+      width: _deviceWidth * 0.45,
     );
   }
 }
